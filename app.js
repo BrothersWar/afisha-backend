@@ -96,7 +96,7 @@ app.get("/callback", function (req, res) {
         console.log(result);
         if (result.access_token) {
           res.send(`${result.access_token},${result.refresh_token}`);
-          return res.redirect("https://github.com/");
+          res.end();
         } else {
           res.redirect(
             "/#" +
