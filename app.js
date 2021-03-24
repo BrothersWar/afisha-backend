@@ -95,7 +95,7 @@ app.get("/callback", function (req, res) {
       .then((result) => {
         console.log(result);
         if (result.access_token) {
-          res.send(`${result.access_token},${result.refresh.token}`);
+          res.send(`${result.access_token},${result.refresh_token}`);
         } else {
           res.redirect(
             "/#" +
