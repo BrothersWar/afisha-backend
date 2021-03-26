@@ -97,7 +97,7 @@ app.get("/callback", function (req, res) {
         if (result.access_token) {
           // res.send(`${result.access_token},${result.refresh_token}`);
           // res.end();
-          res.status(301).redirect("https://www.google.com");
+          res.status(301).redirect("my-demo1://demo1/");
         } else {
           res.redirect(
             "/#" +
