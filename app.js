@@ -100,7 +100,7 @@ app.get("/callback", function (req, res) {
           res
             .status(301)
             .redirect(
-              "https://proyecto26.github.io/react-native-inappbrowser?redirect_url=my-demo1%3A%2F%2Fdemo1%2F"
+              "https://proyecto26.github.io/react-native-inappbrowser?redirect_url=my-demo1%3A%2F%2Fdemo1%2F&code=412512512"
             );
         } else {
           res.redirect(
