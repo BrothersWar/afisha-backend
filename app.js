@@ -48,10 +48,6 @@ app.get("/login", function (req, res) {
 app.get("/callback", function (req, res) {
   console.log(req.url);
 
-  const str =
-    "http://localhost:8888/callback?code=AQBrR3hbnSk5mLNvesCUxihvErsW9i1FJNJWmAIUDSn7PxeQgenHSUfcji0WnrruDjE6B3ilPy19-iki-uqnaDL8eS2srXJeV3Z75LfPvTNymbRPVpe-iSVSxMYo-7jgSzWqDAkN5YlSLzl44SZ42JZAezNGG_kUGb2C2Tf6_NAcTW7reXxAfS4S9rO9dluF6iyppW1hK82QFomr8F93KJTzqdxDBw";
-
-  // const code = str.split("=")[1];
   const code = req.url.split("=")[1];
   const state = generateRandomString(16);
 
@@ -118,6 +114,53 @@ app.get("/callback", function (req, res) {
         }
       });
   }
+});
+
+app.get("/refresh", function (req, res) {
+  console.log(req.url);
+
+  const refreshToken = req.url.split("=")[1];
+
+  const data = {
+    grant_type: "refresh_token",
+    refresh_token: refreshToken,
+  };
+  var endocedStr = "";
+  for (var prop in data) {
+    if (endocedStr) {
+      endocedStr += "&";
+    }
+    endocedStr += prop + "=" + data[prop];
+  }
+
+  console.log(data);
+
+  var authOptions = {
+    method: "POST",
+    headers: new Headers({
+      Authorization:
+        "Basic " +
+        new Buffer(client_id + ":" + client_secret).toString("base64"),
+      "content-type": "application/x-www-form-urlencoded",
+    }),
+    body: endocedStr,
+    json: true,
+  };
+
+  fetch("https://accounts.spotify.com/api/token", authOptions)
+    .then((response) => response.json())
+    .then((r) => {
+      console.log(r);
+
+      if (r.access_token) {
+        res.send(r.access_token);
+      } else {
+        console.log("err to parse accesstoken");
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 });
 
 app.listen(port, function () {
