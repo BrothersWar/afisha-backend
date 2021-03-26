@@ -97,10 +97,13 @@ app.get("/callback", function (req, res) {
         if (result.access_token) {
           // res.send(`${result.access_token},${result.refresh_token}`);
           // res.end();
+          const redirUri = encodeURIComponent(
+            `my-demo1://demo1/?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
+          );
           res
             .status(301)
             .redirect(
-              "https://proyecto26.github.io/react-native-inappbrowser?redirect_url=my-demo1%3A%2F%2Fdemo1%2F&code=412512512"
+              `https://proyecto26.github.io/react-native-inappbrowser?redirect_url=${redirUri}`
             );
         } else {
           res.redirect(
