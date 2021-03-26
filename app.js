@@ -97,7 +97,11 @@ app.get("/callback", function (req, res) {
         if (result.access_token) {
           // res.send(`${result.access_token},${result.refresh_token}`);
           // res.end();
-          res.status(301).redirect("my-demo1://demo1");
+          res
+            .status(301)
+            .redirect(
+              "https://proyecto26.github.io/react-native-inappbrowser?redirect_url=my-demo1%3A%2F%2Fdemo1%2F"
+            );
         } else {
           res.redirect(
             "/#" +
