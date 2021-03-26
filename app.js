@@ -98,7 +98,7 @@ app.get("/callback", function (req, res) {
           // res.send(`${result.access_token},${result.refresh_token}`);
           // res.end();
           const redirUri = encodeURIComponent(
-            `my-demo1://demo1/?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
+            `afisha://main?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
           );
           res
             .status(301)
