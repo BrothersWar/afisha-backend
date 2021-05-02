@@ -102,8 +102,11 @@ app.get("/callback", function (req, res) {
             //   `https://proyecto26.github.io/react-native-inappbrowser?redirect_url=${redirUri}`
             // );
             .redirect(
-              `afisha://main/?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
+              `https://proyecto26.github.io/react-native-inappbrowser?redirect_url=afisha://main/`
             );
+          // .redirect(
+          //   `afisha://main/?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
+          // );
         } else {
           res.redirect(
             "/#" +
