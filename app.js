@@ -102,7 +102,7 @@ app.get("/callback", function (req, res) {
             //   `https://proyecto26.github.io/react-native-inappbrowser?redirect_url=${redirUri}`
             // );
             .redirect(
-              `https://github.com/?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
+              `http//www.app_name.com?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
             );
         } else {
           res.redirect(
