@@ -93,17 +93,17 @@ app.get("/callback", function (req, res) {
         if (result.access_token) {
           // res.send(`${result.access_token},${result.refresh_token}`);
           // res.end();
-          const redirUri = encodeURIComponent(
-            `afisha://main/?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
-          );
-          res
-            .status(301)
-            .redirect(
-              `https://proyecto26.github.io/react-native-inappbrowser?redirect_url=${redirUri}`
-            );
-          // .redirect(
+          // const redirUri = encodeURIComponent(
           //   `afisha://main/?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
           // );
+          res
+            .status(301)
+            // .redirect(
+            //   `https://proyecto26.github.io/react-native-inappbrowser?redirect_url=${redirUri}`
+            // );
+            .redirect(
+              `http://www.afisha229.com?access_token=${result.access_token}&refresh_token=${result.refresh_token}`
+            );
         } else {
           res.redirect(
             "/#" +
