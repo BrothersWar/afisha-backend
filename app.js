@@ -9,6 +9,7 @@ global.Headers = fetch.Headers;
 
 const querystring = require("querystring");
 const { post } = require("request");
+const nodemailer = require("nodemailer");
 
 app.use(cors());
 
