@@ -163,6 +163,37 @@ app.get("/refresh", function (req, res) {
     });
 });
 
+app.get("/send-mail", function (req, res) {
+  console.log(req.url);
+
+  // const transporter = nodemailer.createTransport({
+  //   host: 'smtp.yandex.ru',
+  //   port: 465,
+  //   secure: true, // true for 465, false for other ports
+  //   auth: {
+  //     user: 'no-reply-afisha@yandex.ru', // generated ethereal user
+  //     pass: '123456Afishaiuu', // generated ethereal password
+  //   },
+  // });
+
+  // const options = {
+  //   from: 'no-reply-afisha@yandex.ru', // sender address
+  //   to: 'kukuruzniylox@brotherswar.club', // list of receivers
+  //   subject: 'Код для Восстановления доступа', // Subject line
+  //   text: 'Ваш код восстановления к приложению Афиша: dZ2D3SbS', // plain text body
+  //   //html: "<b>Hello world?</b>" // html body
+  // };
+
+  // // send mail with defined transport object
+  // transporter.sendMail(options, function (err, info) {
+  //   if (err) {
+  //     console.log(err);
+  //     return;
+  //   }
+  //   console.log('Sent ' + info.messageId);
+  // });
+});
+
 app.listen(port, function () {
   console.log("server started " + port);
 });
