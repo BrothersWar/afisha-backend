@@ -17,6 +17,7 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.0",
     "node-fetch": "^2.6.1",
+    "nodemailer": "^6.6.1",
     "querystring": "~0.2.0",
     "request": "~2.83.0"
   }
