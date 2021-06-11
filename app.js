@@ -17,6 +17,9 @@ const client_secret = process.env.client_secret;
 const redirect_uri = process.env.redirect_uri;
 const port = process.env.PORT || 8888;
 
+const mail_login = process.env.mail_login;
+const mail_pass = process.env.mail_pass;
+
 const generateRandomString = function (length) {
   let text = "";
   const possible =
@@ -166,32 +169,36 @@ app.get("/refresh", function (req, res) {
 app.get("/send-mail", function (req, res) {
   console.log(req.url);
 
-  // const transporter = nodemailer.createTransport({
-  //   host: 'smtp.yandex.ru',
-  //   port: 465,
-  //   secure: true, // true for 465, false for other ports
-  //   auth: {
-  //     user: 'no-reply-afisha@yandex.ru', // generated ethereal user
-  //     pass: '123456Afishaiuu', // generated ethereal password
-  //   },
-  // });
+  let string = req.url.split("?")[1].split("&");
 
-  // const options = {
-  //   from: 'no-reply-afisha@yandex.ru', // sender address
-  //   to: 'kukuruzniylox@brotherswar.club', // list of receivers
-  //   subject: 'Код для Восстановления доступа', // Subject line
-  //   text: 'Ваш код восстановления к приложению Афиша: dZ2D3SbS', // plain text body
-  //   //html: "<b>Hello world?</b>" // html body
-  // };
+  const mail = string[0].split("=")[1];
+  const code = string[1].split("=")[1];
 
-  // // send mail with defined transport object
-  // transporter.sendMail(options, function (err, info) {
-  //   if (err) {
-  //     console.log(err);
-  //     return;
-  //   }
-  //   console.log('Sent ' + info.messageId);
-  // });
+  const transporter = nodemailer.createTransport({
+    host: "smtp.yandex.ru",
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+      user: mail_login, // generated ethereal user
+      pass: mail_pass, // generated ethereal password
+    },
+  });
+
+  const options = {
+    from: "no-reply-afisha@yandex.ru", // sender address
+    to: mail, // list of receivers
+    subject: "Код для Восстановления доступа", // Subject line
+    text: `Ваш код восстановления к приложению Афиша: ${code}`, // plain text body
+    //html: "<b>Hello world?</b>" // html body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(options, function (err, info) {
+    if (err) {
+      return err;
+    }
+    return "Sent " + info.messageId;
+  });
 });
 
 app.listen(port, function () {
