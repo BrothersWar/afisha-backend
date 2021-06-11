@@ -196,9 +196,10 @@ app.get("/send-mail", function (req, res) {
   // send mail with defined transport object
   transporter.sendMail(options, function (err, info) {
     if (err) {
-      return err;
+      // return err;
+      return "Не удалось отправить код на почту";
     }
-    return "Sent " + info.messageId;
+    return "Код успешно отправлен";
   });
 });
 
